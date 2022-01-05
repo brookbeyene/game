@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= username %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Country name trivia</h1>
+    <p>Please type in country name and country code</p>
+    <table>
+    <tbody>
+    <tr>
+      <td>
+         <form action="/users" method="POST">
+          <p>Country Name: <input type="text" name="countryName" placeholder="Country Name"></p>
+          <p>Country Code: <input type="text" name="countryCode" placeholder="Country Code"></p>
+          
+          <p><input type="submit" value="Submit"></p>
+        </form>
+        <footer>
+        <a href="/">Log out</a>
+    </footer>
+      </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <h3>You have entered</h3>
+            <table>
+                <tbody>
+                    <tr>  
+                        <td>
+                            <tbody>
+                                <% for(var i=0; i < myData.length; i++) { %>
+                                    <tr>
+                                        <td>Input ID = <%= myData[i].id %></td>
+                                        <td>Input Country Name = <%= myData[i].countryName %></td>
+                                        <td>Input Country Code = <%= myData[i].countryCode %></td>
+                                        <td>Input Score = <%= myData[i].score %></td>
+                                        <td>Overall Score = <%= myData[i].total %></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </td>
+                        </tr>
+                    </tbody>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>  
+</body>
+</html>
