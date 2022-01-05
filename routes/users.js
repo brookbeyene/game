@@ -62,7 +62,7 @@ router.post('/', function(req, res, next){
 putCountries();
 
 
-getCountries();
+// getCountries();
   
   // res.render('users', {username: TABLE_NAME, countryName: countryName, countryCode: countryCode, possibleScore: possible_score, total: total});
   res.render('users', {username: TABLE_NAME, 'myData': myData});
