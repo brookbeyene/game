@@ -5,7 +5,7 @@ var countries = require('../country.json');
 
 var total = 0;
 var myData = []
-
+var displayName = [];
 require('dotenv/config')
 /* AWS Config Env. */
 AWS.config.update({
@@ -20,7 +20,9 @@ const TABLE_NAME = "talent";
 
 
 router.get('/', function(req, res, next) {
-    res.render('users', {username: TABLE_NAME, 'myData': myData});
+  displayName.push(req.session.username)
+  console.log("top page",displayName[0])
+    res.render('users', {username: displayName[0], 'myData': myData});
 });
 
 const pitstop1 = (req, res, next) =>{
@@ -58,7 +60,7 @@ router.post('/', pitstop1, function(req, res, next){
     TableName: TABLE_NAME,
     Item: dataset
   };
-  console.log(params)
+ 
   const countries = await  dynamoClient.put(params, function(err, data) {
     if (err) {
         console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
@@ -66,8 +68,8 @@ router.post('/', pitstop1, function(req, res, next){
         console.log("Added item:", JSON.stringify(data, null, 2));
     }
 });
-  // const countries = await dynamoClient.scan(params).promise();
-  console.log("this is getting countries out of db", countries);
+  
+  console.log("this is getting username out of db", req.session.username);
   return countries;
 }
 
@@ -75,9 +77,9 @@ putCountries();
 
 
 // getCountries();
-  
+  console.log("bottom page",displayName[0])
   // res.render('users', {username: TABLE_NAME, countryName: countryName, countryCode: countryCode, possibleScore: possible_score, total: total});
-  res.render('users', {username: TABLE_NAME, 'myData': myData});
+  res.render('users', {'myData': myData, username: displayName[0]});
   
 })
 

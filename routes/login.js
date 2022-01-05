@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
+// var session = require('express-session');
 // express().use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
  
 /* GET users listing. */
@@ -23,13 +23,13 @@ router.post('/', function(req, res, next){
   });
 
   if(!found_user){
-   
       return res.status(403).json({
-          message: "Wrong email or pa"
+          message: "Wrong username or password"
       })
     
   }
   req.session.username = req.body.username
+  console.log("req.session", req.session.username)
     res.redirect('/users')
 
   console.log("Username", username)
